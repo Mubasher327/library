@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LibrarianService {
@@ -17,8 +18,8 @@ public class LibrarianService {
         return new LibrarianDto(librarianRepository.save(librarianDto.dissamble()));
     }
 
-    public List<Librarian> getLibrarian() {
-        return librarianRepository.findAll();
+    public List<LibrarianDto> getLibrarian() {
+        return librarianRepository.findAll().stream().map(LibrarianDto :: new).collect(Collectors.toList());
     }
 
     public String deleteLibrarianAccount(long librarianId) {

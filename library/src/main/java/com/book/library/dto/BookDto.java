@@ -20,7 +20,7 @@ public class BookDto {
     public BookDto(Book book){
 
         this.setId(book.getId());
-        this.setIsbn(book.getId());
+        this.setIsbn(book.getIsbn());
         this.setTitle(book.getTitle());
         this.setAuthorName(book.getAuthorName());
         this.setCategory(book.getCategory());

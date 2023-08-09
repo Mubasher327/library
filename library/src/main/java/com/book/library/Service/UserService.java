@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -24,8 +25,8 @@ public class UserService {
         return new UserDto(userRepository.save(user.dissamble()));
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getUsers() {
+        return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
     }
     public String deleteUser(long userId) {
         userRepository.deleteById(userId);

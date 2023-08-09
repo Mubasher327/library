@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Librarian")
+@RequestMapping("/Librarian")
 public class LibrarianController {
     @Autowired
     LibrarianService librarianService;
@@ -22,7 +22,7 @@ public class LibrarianController {
     }
 
     @GetMapping("/get")
-    public List<Librarian> getLibrarian(){
+    public List<LibrarianDto> getLibrarian(){
         return librarianService.getLibrarian();
     }
 
