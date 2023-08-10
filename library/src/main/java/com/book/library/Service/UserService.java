@@ -33,4 +33,19 @@ public class UserService {
         return "User deleted Successfully";
     }
 
+    public UserDto findUser(String name, String email){
+        User user =new User();
+
+        if (name!=null){
+            user=userRepository.findUserByName(name);
+        }
+        else if(email!=null){
+            user=userRepository.findUserByEmail(email);
+        }
+        else{
+            System.out.printf("Credntials invalid!!");
+        }
+        return new UserDto(user);
+    }
+
 }

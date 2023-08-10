@@ -46,7 +46,7 @@ public class BookService {
         return new BookDto(book);
     }
 
-    public List<BookDto> findBookList(Long userId, Long librarianId, String authorName) {
+    public List<BookDto> findBookList(Long userId, Long librarianId, String authorName,String category) {
         List<BookDto> bookList = new ArrayList<>();
         if (userId != null) {
             bookList = bookRepository.findBookByUser_Id(userId).stream().map(BookDto::new).collect(Collectors.toList());
@@ -56,7 +56,9 @@ public class BookService {
 
         } else if (authorName != null) {
             bookList = bookRepository.findBookByAuthorName(authorName).stream().map(BookDto::new).collect(Collectors.toList());
-        } else {
+        } else if(category!=null) {
+            bookList = bookRepository.findBookByCategory(category).stream().map(BookDto::new).collect(Collectors.toList());
+        }else {
             System.out.println("Credential invalid!!");
         }
         return bookList;

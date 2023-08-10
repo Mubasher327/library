@@ -31,14 +31,16 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    private BookDto findBook(@RequestParam(name = "isbn",required = false)Long isbn , @RequestParam(name = "title",required = false)String title){
+    private BookDto findBook(@RequestParam(name = "isbn",required = false)Long isbn ,
+                             @RequestParam(name = "title",required = false)String title){
         return bookService.findBook(isbn, title);
     }
     @GetMapping("/search/list")
     private List<BookDto> findBooklist(@RequestParam(name = "userId",required = false)Long userId ,
                                        @RequestParam(name = "librarianId",required = false)Long librarianId,
-                                       @RequestParam(name="authorName",required = false)String authorName){
-        return bookService.findBookList(userId,librarianId,authorName);
+                                       @RequestParam(name="authorName",required = false)String authorName,
+                                       @RequestParam(name="category",required = false)String category){
+        return bookService.findBookList(userId,librarianId,authorName, category);
     }
 
 }

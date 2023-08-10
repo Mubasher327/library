@@ -27,6 +27,13 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("/search")
+    public UserDto findUser(@RequestParam (name="name",required = false)String name,
+                            @RequestParam(name="email",required = false)String email){
+
+        return userService.findUser(name, email);
+    }
+
     @DeleteMapping("/delete/{id}")
     private String deleteUser(@PathVariable(name = "id") long userId){
         return userService.deleteUser(userId);
